@@ -6,29 +6,12 @@ import javax.swing.*;
 
 
 
-public class VendingMachine extends JFrame implements ActionListener
-{
+public class VendingMachine extends JFrame implements ActionListener{
     //Przyciski panelu lewego
-    JTextArea displayLeft;
-    JTextArea displayRight;
-    JButton siedem;
-    JButton osiem;
-    JButton dziewiec;
-    JButton cztery;
-    JButton piec;
-    JButton szesc;
-    JButton jeden;
-    JButton dwa;
-    JButton trzy;
-    JButton zero;
-    JButton zeruj;
+    JTextArea displayLeft, displayRight;
+    JButton siedem, osiem, dziewiec, cztery, piec, szesc, jeden, dwa, trzy, zero, zeruj;
     //Przyciski panelu prawego
-    JButton piecZL;
-    JButton dwaZL;
-    JButton jedenZL;
-    JButton pisiontGR;
-    JButton dwajsciaGR;
-    JButton dziesiecGR;
+    JButton piecZL, dwaZL, jedenZL, pisiontGR, dwajsciaGR, dziesiecGR;
     //Kupno
     JButton buy;
     
@@ -37,8 +20,7 @@ public class VendingMachine extends JFrame implements ActionListener
     String rightPaneDisplayValueSet;
     
     //Konstruktor
-    public VendingMachine()
-    {
+    public VendingMachine(){
         super("VendingMachine");
         setSize(700, 200);
         setResizable(false);
@@ -163,56 +145,42 @@ public class VendingMachine extends JFrame implements ActionListener
         setVisible(true);
     }
     
-    public void actionPerformed(ActionEvent evt)
-    {
+    public void actionPerformed(ActionEvent evt){
         Object source = evt.getSource();
-        if(source==siedem)
-        {
+        if(source==siedem){
             displayLeft.append("7");
         }
-        else if(source==osiem)
-        {
+        else if(source==osiem){
             displayLeft.append("8");
         }
-        else if(source==dziewiec)
-        {
+        else if(source==dziewiec){
             displayLeft.append("9");
         }
-        else if(source==cztery)
-        {
+        else if(source==cztery){
             displayLeft.append("4");
         }
-        else if(source==piec)
-        {
+        else if(source==piec){
             displayLeft.append("5");
         }
-        else if(source==szesc)
-        {
+        else if(source==szesc){
             displayLeft.append("6");
         }
-        else if(source==jeden)
-        {
+        else if(source==jeden){
             displayLeft.append("1");
         }
-        else if(source==dwa)
-        {
+        else if(source==dwa){
             displayLeft.append("2");
         }
-        else if(source==trzy)
-        {
+        else if(source==trzy){
             displayLeft.append("3");
         }
-        else if(source==zero)
-        {
+        else if(source==zero){
             displayLeft.append("0");
         }
-        else if(source==zeruj)
-        {         
-            displayLeft.setText("");
-            displayRight.setText("0");
+        else if(source==zeruj){         
+            zeruj();
         }
-        else if(source==piecZL)
-        {
+        else if(source==piecZL){
             rightPaneDisplayValueGet = Double.parseDouble(displayRight.getText());
             rightPaneDisplayValueGet += 5;
             rightPaneDisplayValueGet *= 100;
@@ -222,8 +190,7 @@ public class VendingMachine extends JFrame implements ActionListener
             
             displayRight.setText(rightPaneDisplayValueSet);
         }
-        else if(source==dwaZL)
-        {
+        else if(source==dwaZL){
             rightPaneDisplayValueGet = Double.parseDouble(displayRight.getText());
             rightPaneDisplayValueGet += 2;
              rightPaneDisplayValueGet *= 100;
@@ -233,8 +200,7 @@ public class VendingMachine extends JFrame implements ActionListener
             
             displayRight.setText(rightPaneDisplayValueSet);
         }
-        else if(source==jedenZL)
-        {
+        else if(source==jedenZL){
             rightPaneDisplayValueGet = Double.parseDouble(displayRight.getText());
             rightPaneDisplayValueGet += 1;
              rightPaneDisplayValueGet *= 100;
@@ -244,8 +210,7 @@ public class VendingMachine extends JFrame implements ActionListener
             
             displayRight.setText(rightPaneDisplayValueSet);
         }
-        else if(source==pisiontGR)
-        {
+        else if(source==pisiontGR){
             rightPaneDisplayValueGet = Double.parseDouble(displayRight.getText());
             rightPaneDisplayValueGet += 0.5;
              rightPaneDisplayValueGet *= 100;
@@ -255,8 +220,7 @@ public class VendingMachine extends JFrame implements ActionListener
             
             displayRight.setText(rightPaneDisplayValueSet);
         }
-        else if(source==dwajsciaGR)
-        {
+        else if(source==dwajsciaGR){
             rightPaneDisplayValueGet = Double.parseDouble(displayRight.getText());
             rightPaneDisplayValueGet += 0.2;
              rightPaneDisplayValueGet *= 100;
@@ -266,8 +230,7 @@ public class VendingMachine extends JFrame implements ActionListener
             
             displayRight.setText(rightPaneDisplayValueSet);
         }
-        else if(source==dziesiecGR)
-        {
+        else if(source==dziesiecGR){
             rightPaneDisplayValueGet = Double.parseDouble(displayRight.getText());
             rightPaneDisplayValueGet += 0.1;
              rightPaneDisplayValueGet *= 100;
@@ -277,26 +240,20 @@ public class VendingMachine extends JFrame implements ActionListener
             
             displayRight.setText(rightPaneDisplayValueSet);
         }
-        else if(source==buy)
-        {
+        else if(source==buy){
             buyAction();
         }
     }
     
-    private static void setLookAndFeel()
-    {
-        try
-        {
+    private static void setLookAndFeel(){
+        try{
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
         }
         catch(Exception exc)
-        {
-            
-        }
+        {}
     }
     
-    public void buyAction()
-    {
+    public void buyAction(){
         //Minibaza z danymi amków
         int[] productID = {1, 2, 3, 4, 5};
         String[] productName = {"Batonik", "Czipsy", "Orzeszki", "Żelki", "Kanapka"};
@@ -305,8 +262,7 @@ public class VendingMachine extends JFrame implements ActionListener
         //Pobranie danych dot. który produkt i ile pieniądza wrzucono
         //ID produktu
         int productIDget = Integer.parseInt(displayLeft.getText());
-        if(productIDget>5)
-        {
+        if(productIDget>5){
             productIDgetWrong();
             return;
         }
@@ -318,108 +274,86 @@ public class VendingMachine extends JFrame implements ActionListener
         //reszta do wydania
         double change;
         double productPriceGet;
-        if(productIDget==1)
-        {        
-                if(productIDget==1 && rightPaneDisplayValueIfCorrect>=2.0)
-                {
+        if(productIDget==1){        
+                if(productIDget==1 && rightPaneDisplayValueIfCorrect>=2.0){
                     productPriceGet = productPrice[0];
                     change = productPriceGet - rightPaneDisplayValueIfCorrect;
                     releaseGoody(-change);
                 }
-                else
-                {
+                else{
                     denyReleaseGoody();
                 }
         }
-        else if(productIDget == 2)
-        {
-                if(productIDget==2 && rightPaneDisplayValueIfCorrect>=2.5)
-                {
+        else if(productIDget == 2){
+                if(productIDget==2 && rightPaneDisplayValueIfCorrect>=2.5){
                     productPriceGet = productPrice[1];
                     change = productPriceGet - rightPaneDisplayValueIfCorrect;
                     releaseGoody(-change);
                 }
-                else
-                {
+                else{
                     denyReleaseGoody();
                 }
         }
-        else if(productIDget == 3)
-        {
-                if(productIDget==3 && rightPaneDisplayValueIfCorrect>=3.0)
-                {
+        else if(productIDget == 3){
+                if(productIDget==3 && rightPaneDisplayValueIfCorrect>=3.0){
                     productPriceGet = productPrice[2];
                     change = productPriceGet - rightPaneDisplayValueIfCorrect;
                     releaseGoody(-change);
                 }
-                else
-                {
+                else{
                     denyReleaseGoody();
                 }
         }
-        else if(productIDget == 4)
-        {
-                if(productIDget==4 && rightPaneDisplayValueIfCorrect>=2.7)
-                {
+        else if(productIDget == 4){
+                if(productIDget==4 && rightPaneDisplayValueIfCorrect>=2.7){
                     productPriceGet = productPrice[3];
                     change = productPriceGet - rightPaneDisplayValueIfCorrect;
                     releaseGoody(-change);
                 }
-                else
-                {
+                else{
 
                     denyReleaseGoody();
                 }
         }
-        else if(productIDget == 5)
-        {
-                if(productIDget==5 && rightPaneDisplayValueIfCorrect>=4.6)
-                {
+        else if(productIDget == 5){
+                if(productIDget==5 && rightPaneDisplayValueIfCorrect>=4.6){
                     productPriceGet = productPrice[4];
                     change = productPriceGet - rightPaneDisplayValueIfCorrect;
                     releaseGoody(-change);
                 }
-                else
-                {
+                else{
                     denyReleaseGoody();
                 }
         }
-        
         productIDget = 0;
         rightPaneDisplayValueIfCorrect = 0;
         productPriceGet = 0;
         change = 0;
     }
     
-    //public double countChange()
-    //{
-    //    double countedChange = 0;
-    //    return countedChange;
-    //}
+    private void zeruj(){
+        displayLeft.setText("");
+        displayRight.setText("0");
+    }
     
-    public void productIDgetWrong()
-    {
+    private void productIDgetWrong(){
         JOptionPane.showMessageDialog(null, "Niewłaściwy numer smakołyka!");
     }
     
-    public void releaseGoody(double changeIn)
-    {
-        
+    private void releaseGoody(double changeIn){
         double change = changeIn;
         change *= 100;
         change = Math.round(change);
         change /= 100;
         JOptionPane.showMessageDialog(null, "Odbierz swój smakołyk. Reszta: "+ Double.toString(change));
+        zeruj();
     }
     
-    public void denyReleaseGoody()
-    {
+    private void denyReleaseGoody(){
         JOptionPane.showMessageDialog(null, "Wprowadzona kwoa jest zbyt niska!");
     }
     
-    public static void main(String[] args)
-    {
+    public static void main(String[] args){
         VendingMachine machine = new VendingMachine();
     }
-    
 }
